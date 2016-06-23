@@ -20,17 +20,17 @@ h4, h3 {
   color: #ffc516;
 }
 
-#chatters-list li {
+#chatters-list li a{
   color: #fff02b;
 }
 
-#mods-list li {
+#mods-list li a {
   color: #f154ff;
 }
 
-section {
+section, footer {
   background-color: #3b0075;
-  padding: 2em;
+  padding: 2em 0em;;
 }
 
 #search-box {
@@ -92,7 +92,7 @@ section {
 .list-section {
   vertical-align: top;
   display: inline-block;
-  padding-bottom: 2em;
+  padding-bottom: 4em;
   text-align: center;
   width: 33%;
 }
