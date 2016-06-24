@@ -2,6 +2,7 @@ $(function(){
   $('#search-btn').click(function(e){
     e.preventDefault();
     var streamer = $('#search-box').val().toLowerCase();
+    $("#stream-title").html($('#search-box').val())
     $.getJSON("https://tmi.twitch.tv/group/user/"+streamer+"/chatters?callback=?",function(data){
       var viewersArray = data.data.chatters.viewers
       var randomViewer = viewersArray[Math.floor(Math.random() * viewersArray.length)];
@@ -24,6 +25,7 @@ $(function(){
 
         })
       })
+
       viewersArray.forEach(function(viewer){
         var liViewer = $("<li><a>"+viewer+"</a></li>");
         $('#chatters-list').append(liViewer)
