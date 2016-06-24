@@ -4,6 +4,12 @@
   text-decoration: none;
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color: #3b0075;
+}
+
 ul, li{
   list-style: none;
   padding: 0;
