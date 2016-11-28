@@ -9,7 +9,7 @@ This app allows you to retrieve a list of the current active viewers in a stream
 ## In action:
 ### Home Page
 Use the search bar to request info from a streamers channel.
-<img src='https://raw.githubusercontent.com/kuwood/peepin-twitch/master/img/peepin_twitch.png' width='800'>
+<img src='https://raw.githubusercontent.com/kuwood/peepin-twitch/master/img/peepin_twitch2.png' width='800'>
 
 ### Selecting a user:
 Once the streamers channel is found, the view will populate with the current viewers which can be selected to show the user details.
