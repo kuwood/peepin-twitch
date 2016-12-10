@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
-    <meta charset="utf-8">
-    <title>Peepin Twitch</title>
-  </head>
-  <body>
-    <nav class="navbar">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.1.1/normalize.min.css" media="screen" title="no title" charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Sansita+One|Scope+One|Shrikhand" rel="stylesheet">
+  <link rel="stylesheet" href="css/master.css" media="screen" title="no title" charset="utf-8">
+  <meta charset="utf-8">
+  <title>Peepin Twitch</title>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <header>
       <div class="container">
-        <div class="nav-section">
-          <a id="brand" href="#">Peepin Twitch</a>
+        <h1 id="brand" href="#">Peepin Twitch</h1>
+        <div class="about-wrap">
+          <p class="about-p">Use the search bar below to get the current "chatters" list of an active streamer.</p>
         </div>
-        <div class="nav-section">
-          <form class="navbar-search">
+        <div class="form-wrap">
+          <form class="search">
             <input id="search-box" type="text" placeholder="Search a stream">
-            <button id="search-btn" type="submit" >Search</button>
+            <!-- <button id="search-btn" type="submit" >Search</button> -->
           </form>
         </div>
-        <div class="nav-section">
-        </div>
       </div>
-    </nav>
-    <section>
-        <h1 id="stream-title">^Search a stream above^</h1>
+    </header>
+    <section class="feedback-section">
+      <h5 class="feedback">Waiting for input.</h5>
     </section>
-    <section>
-      <div id="mods" class="list-section">
-        <h3>Mods:</h3>
-        <ul id="mods-list">
-
-        </ul>
-      </div>
-      <div id="chatters" class="list-section">
-        <h3>Chatters:</h3>
-        <ul id="chatters-list">
-
-        </ul>
-      </div>
-      <div id="user" class="list-section">
-        <h3><button id="random" type="button" name="button">Random Chatter</button>
-        </h3>
+    <section class="chatters-section">
+      <h1 id="stream-title"></h1>
+      <button id="random" type="button" name="button">Random Chatter</button>
+      <div id="user">
         <h4>chatter:</h4>
         <ul id="user-details">
-
         </ul>
       </div>
+      <div class="chatters-wrapper">
+        <div id="mods" class="list-section">
+          <h3>Mods:</h3>
+          <ul id="mods-list">
+          </ul>
+        </div>
+        <div id="chatters" class="list-section">
+          <h3>Chatters:</h3>
+          <ul id="chatters-list">
+          </ul>
+        </div>
+      </div>
     </section>
-    <footer>
+  </div>
+  <footer class="footer">
+    <p>Keith Underwood 2016
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="js/app.js"></script>
+</body>
 
-    </footer>
-    <script
-  src="https://code.jquery.com/jquery-3.1.1.min.js"
-  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-  crossorigin="anonymous"></script>
-    <script src="js/app.js"></script>
-  </body>
 </html>

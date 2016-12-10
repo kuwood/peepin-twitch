@@ -8,6 +8,16 @@ function clearView() {
   $('#user-details').html("");
 }
 
+function showList(bool) {
+  if (bool) {
+    $('.feedback-section').css({'display':'none'})
+    $('.chatters-section').css({'display':'block'})
+  } else {
+    $('.feedback-section').css({'display':'block'})
+    $('.chatters-section').css({'display':'none'})
+  }
+}
+
 function populateUserDetails(data) {
   $('#user-details').html("");
   $('#user-details').append("<li>Date Created: " + data.users[0].created_at + "</li>");
@@ -71,11 +81,14 @@ function populateViewers(data) {
 }
 
 $(function() {
-  $('#search-btn').click(function(e) {
-    e.preventDefault();
-    clearView();
-    var streamer = $('#search-box').val().toLowerCase();
-    $("#stream-title").html($('#search-box').val());
+  showList(false)
+  $('#search-box').keypress(function(e) {
+    if (e.which == 13) {
+      e.preventDefault();
+      clearView();
+      let streamer = $('#search-box').val().toLowerCase();
+      $("#stream-title").html($('#search-box').val());
+
       // uses chatters api (unsupported twitch) to get chatters list
       // chatters api may break when twitch api defaults to version 5
     var url = `https://tmi.twitch.tv/group/user/${streamer}/chatters`;
@@ -84,10 +97,24 @@ $(function() {
       url: url
     })
       .done(function(data) {
-        populateViewers(data);
+        console.log(data);
+        if (data.status >= 400) {
+          showList(false)
+          alert('Could not find that username. Please check twitch.tv to make sure the user is streaming.');
+        } else {
+          showList(true)
+          populateViewers(data);
+        }
       })
       .fail(function(data) {
         alert('Request failed.');
       });
+    }
+  });
+  $(document).on('click', 'a', function(event){
+    event.preventDefault();
+    setTimeout(function () {
+      $("html, body").animate({ scrollTop: $("#stream-title").offset().top }, 500 );
+    }, 10);
   });
 });
