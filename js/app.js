@@ -10,25 +10,39 @@ function clearView() {
 
 function showList(bool) {
   if (bool) {
-    $('.feedback-section').css({'display':'none'})
-    $('.chatters-section').css({'display':'block'})
+    $('header').fadeOut('slow', function() {
+      $('.chatters-section').css({'display':'block'}).fadeIn();
+      $('header').css({'height':'auto'}).fadeIn();
+    });
+    $('body').fadeIn('slow');
+    setTimeout(function () {
+      $("html, body").animate({ scrollTop: $("#stream-title").offset().top }, 500 );
+    }, 1000);
   } else {
-    $('.feedback-section').css({'display':'block'})
-    $('.chatters-section').css({'display':'none'})
+    $('header').css({'height':'calc(100vh - 80px)'});
+    $('.chatters-section').css({'display':'none'});
   }
 }
 
 function populateUserDetails(data) {
+  $('#user-details').fadeOut('slow');
   $('#user-details').html("");
-  $('#user-details').append("<li>Date Created: " + data.users[0].created_at + "</li>");
-  $('#user-details').append("<li><img src='" + data.users[0].logo + "'></li>");
-  $('#user-details').append("<li>Bio: " + data.users[0].bio + "</li>");
+  setTimeout(function () {
+    $('#user-details').append("<li><img src='" + data.users[0].logo + "'></li>");
+    $('#user-details').append(`<li><h4>${data.users[0].name}</h4></li>`)
+    $('#user-details').append("<li>Date Created: " + data.users[0].created_at + "</li>");
+    $('#user-details').append("<li>Bio: " + data.users[0].bio + "</li>");
+    $('#user-details').fadeIn('slow');
+  }, 600);
 }
 
 // populates the viewers list and attaches onClick to each user
 function populateViewers(data) {
   if (data.data.chatter_count <= 1) {
+    showList(false);
     alert('Did not find any data. Did you check the spelling?');
+  } else {
+    showList(true);
   }
   var viewersArray = data.data.chatters.viewers;
   var randomViewer = viewersArray[Math.floor(Math.random() * viewersArray.length)];
@@ -43,9 +57,9 @@ function populateViewers(data) {
           url: url
         })
         .done(function(data) {
+          console.log(data,'data');
           populateUserDetails(data);
         });
-      $('#user h4').html(`${mod}:`);
     });
   });
 
@@ -61,7 +75,6 @@ function populateViewers(data) {
         .done(function(data) {
           populateUserDetails(data);
         });
-      $('#user h4').html(`${viewer}:`);
     });
   });
 
@@ -75,7 +88,6 @@ function populateViewers(data) {
       .done(function(data) {
         populateUserDetails(data);
       });
-    $('#user h4').html(`${randomViewer}:`);
   });
   console.log(data);
 }
@@ -102,7 +114,6 @@ $(function() {
           showList(false)
           alert('Could not find that username. Please check twitch.tv to make sure the user is streaming.');
         } else {
-          showList(true)
           populateViewers(data);
         }
       })
